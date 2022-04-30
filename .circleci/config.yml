@@ -10,7 +10,7 @@ commands:
             unzip awscliv2.zip
             sudo ./aws/install
 
-    install_ansible: install ansible
+    install_ansible:
       description: install ansible
       steps:
         -run:
