@@ -2,10 +2,12 @@
 - name: "Add Node.js from Nodesource"
   become: true
   shell: |
+    sudo apt-get install -y curl python-software-properties software-properties-common
     curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+
 - name: "install node.js 13"
   become: true
-  apt:
+  apt-get:
     name: ["nodejs"]
     state: latest
     update_cache: yes
