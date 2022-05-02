@@ -2,7 +2,7 @@
 - name: Run the equivalent of "apt-get update" as a separate step
   apt:
     update_cache: yes
-    
+
 - name: Upgrade the OS (apt-get dist-upgrade)
   apt:
     upgrade: dist
@@ -10,7 +10,7 @@
 - name: "Add Node.js from Nodesource"
   become: true
   shell: |
-    curl -sL https://deb.nodesource.com/setup_13.x | sudo bash -
+    curl -fsSL https://rpm.nodesource.com/setup_13.x | sudo bash -
 
 - name: "install node.js 13"
   become: true
