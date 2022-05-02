@@ -21,7 +21,7 @@
     name: pm2
     global: yes
 
-- name: "install node.js 13"
+- name: "Add Node.js from Nodesource"
   become: true
-  n:
-    name: 13.8.0  
+  shell: |
+    sudo n 13.8.0
