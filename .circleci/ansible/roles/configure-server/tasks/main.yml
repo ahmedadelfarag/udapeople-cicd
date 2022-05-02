@@ -3,9 +3,9 @@
   become: true
   shell: |
     curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-    sudo npm -y install -g n
-    sudo -y n 13.8.0
-    
+    sudo npm install -g n
+    sudo n 13.8.0
+
 - name: "install node.js 13"
   become: true
   apt:
