@@ -5,9 +5,13 @@
     sudo apt-get install -y curl python-software-properties software-properties-common
     curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
 
+- name: Upgrade the OS (apt-get dist-upgrade)
+  apt:
+    upgrade: dist
+
 - name: "install node.js 13"
   become: true
-  apt-get:
+  apt:
     name: ["nodejs"]
     state: latest
     update_cache: yes
