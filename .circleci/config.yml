@@ -17,7 +17,7 @@ commands:
             name: install Ansible
             command: |
                 sudo apt update
-                sudo apt install software-properties-common
+                sudo apt install software-properties-common -y
                 sudo add-apt-repository --yes --update ppa:ansible/ansible
                 sudo apt install ansible -y
 
@@ -227,6 +227,8 @@ jobs:
           name: Run migrations
           command: |
             cd backend
+            npm cache clean --force
+            rm -rf node_modules
             npm install
             npm run migrations > migrations_dump.txt
       - run:
