@@ -73,7 +73,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          keys: [frontend-dep]
+          keys: [frontend-deps]
       - run:
           name: Build front-end
           command: |
@@ -82,23 +82,23 @@ jobs:
             npm run build
       - save_cache:
           paths: [frontend/node_modules]
-          key: frontend-dep
+          key: frontend-deps
   build-backend:
     docker:
       - image: cimg/node:13.8.0
     steps:
       - checkout
       - restore_cache:
-          keys: [backend-dep]
+          keys: [backend-deps]
       - run:
           name: Back-end build
           command: |
              cd backend
-             npm install
+             npm install  
              npm run build
       - save_cache:
           paths: [backend/node_modules]
-          key: backend-dep
+          key: backend-deps
 
   test-frontend:
     docker:
@@ -106,7 +106,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          keys: [frontend-dep]
+          keys: [frontend-deps]
       - run:
           name: Front-end Unit Test
           command: |
@@ -120,7 +120,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          keys: [backend-dep]
+          keys: [backend-deps]
       - run:
           name: Back-end Unit Tes
           command: |
@@ -134,7 +134,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          keys: [frontend-dep]
+          keys: [frontend-deps]
       - run:
           name: Front-end Scan
           command: |
@@ -149,7 +149,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          keys: [backend-dep]
+          keys: [backend-deps]
       - run:
           name: Back-end Scan
           command: |
@@ -249,7 +249,7 @@ jobs:
       - install_awscli
       - install_nodejs
       - restore_cache:
-          keys: [frontend-dep]
+          keys: [frontend-deps]
       - run:
           name: Install dependencies
           command: |
@@ -265,7 +265,7 @@ jobs:
 
             echo "API_URL=http://${BACKEND_PUBLIC_IP}:3030" >> frontend/.env
             cat frontend/.env
-            
+
       - run:
           name: Deploy frontend objects
           command: |
@@ -289,7 +289,7 @@ jobs:
       - attach_workspace:
           at: ~/
       - restore_cache:
-          keys: [backend-dep]
+          keys: [backend-deps]
 
       - run:
           name: install dependencies
